@@ -1,0 +1,29 @@
+<table class="table">
+    <thead  class="thead-dark">
+        <tr>
+            {{!-- <th>Product Name</th> --}}
+            <th>Dimension</th>
+            <th>Boards Sum</th>
+            <th>Board Feet Sum</th>
+            <th>{{fa-icon "cogs"}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            {{!-- <td></td> --}}
+            <td>All Dimension</td>
+            <td>{{total_boards}}</td>
+            <td>{{digit-format total_boardfeet point=2}}</td>
+            <td></td>
+        </tr>
+        {{#each this.model as |model|}}
+        <tr class={{row-class model}}>
+            {{!-- <td>{{model.Product}}</td>  --}}
+            <td>{{#link-to "production.dimension" model.DimensionID}}{{model.DimensionName}}{{/link-to}}</td>
+            <td>{{model.boards}}</td>
+            <td>{{digit-format model.BoardFeetSum point=2}}</td>
+            <td><input type="checkbox" disabled={{if model.BoardsSum "" "disabled"}}></td>
+        </tr>
+        {{/each}}
+    </tbody>
+ </table>
